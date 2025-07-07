@@ -1,6 +1,7 @@
-# squashwithrename
+# Django issue #36168
 
 This repo demonstrates a fix for [Django issue #36168](https://code.djangoproject.com/ticket/36168).
+For a detailed solution to this issue: https://dev.to/houston_wong_78b96dd3a773/fixing-django-squashed-migration-in-multi-app-issue-36168-5g39
 
 ## ✅ What This Is
 
@@ -18,13 +19,10 @@ You can copy this file into your Django installation to apply the fix.
 1. Clone the repo:
 
    git clone https://github.com/vanschelven/squashwithrename.git
+   
    cd squashwithrename
 
-2. Find your Django installation path:
-
-   python -c "import django; print(django.__file__)"
-
-3. Copy the patched file over the original:
+2. Copy the patched file over the original:
 
    cp django/db/migrations/executor.py <path-to-your-django>/db/migrations/executor.py
 
@@ -32,11 +30,12 @@ You can copy this file into your Django installation to apply the fix.
 
 ## ✅ To Verify the Fix
 
+In the squashwithrename folder
 Run:
 
-   rm db.sqlite3
-   python manage.py migrate
-   python manage.py migrate triggerfailingcode 0001_initial
+   -rm db.sqlite3
+   -python manage.py migrate
+   -python manage.py migrate triggerfailingcode 0001_initial
 
 With the fix, the last command should succeed without raising a FieldDoesNotExist error.
 
